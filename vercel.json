@@ -1,0 +1,139 @@
+import type { BuildCommand, EnvironmentVariables, HeaderRule, SecurityHeaders } from './types'; // Assuming custom types are defined in a separate file
+
+interface RedirectRules {
+    source: string;
+    destination: string;
+    status?: number; // 301 or 302, default to 301
+}
+
+interface CachingStrategy {
+    urlPattern: string;
+    headers: Record<string, string>;
+}
+
+interface FrameworkSettings {
+    vercel?: { [key: string]: any };
+    netlify?: { [key: string]: any };
+}
+
+export interface DeployConfig {
+    build: BuildCommand;
+    env: EnvironmentVariables;
+    redirects: RedirectRules[];
+    headers: SecurityHeaders[];
+    cache: CachingStrategy[];
+    frameworkSettings: FrameworkSettings;
+}
+
+const deployConfig: DeployConfig = {
+    build: {
+        command: 'next build',
+        output: '.next'
+    },
+    env: {
+        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+        NEXT_PRIVATE_SECRET_KEY: process.env.NEXT_PRIVATE_SECRET_KEY
+    },
+    redirects: [
+        { source: '/old-url', destination: '/new-url' }
+    ],
+    headers: [
+        {
+            source: '/',
+            headers: [
+                { key: 'strict-transport-security', value: 'max-age=31536000; includeSubDomains; preload' },
+                { key: 'x-content-type-options', value: 'nosniff' },
+                { key: 'x-frame-options', value: 'DENY' },
+                { key: 'x-xss-protection', value: '1; mode=block' }
+            ]
+        }
+    ],
+    cache: [
+        {
+            urlPattern: '/api/*',
+            headers: {
+                'Cache-Control': 's-maxage=3600, stale-while-revalidate'
+            }
+        },
+        {
+            urlPattern: '/static/*',
+            headers: {
+                'Cache-Control': 'public, max-age=86400'
+            }
+        }
+    ],
+    frameworkSettings: {
+        vercel: { buildCommand: 'next build', startCommand: 'next start' },
+        netlify: { buildContext: 'production', functionsDirectory: './functions' }
+    }
+};
+
+import type { BuildCommand, EnvironmentVariables, HeaderRule, SecurityHeaders } from './types'; // Assuming custom types are defined in a separate file
+
+interface RedirectRules {
+    source: string;
+    destination: string;
+    status?: number; // 301 or 302, default to 301
+}
+
+interface CachingStrategy {
+    urlPattern: string;
+    headers: Record<string, string>;
+}
+
+interface FrameworkSettings {
+    vercel?: { [key: string]: any };
+    netlify?: { [key: string]: any };
+}
+
+export interface DeployConfig {
+    build: BuildCommand;
+    env: EnvironmentVariables;
+    redirects: RedirectRules[];
+    headers: SecurityHeaders[];
+    cache: CachingStrategy[];
+    frameworkSettings: FrameworkSettings;
+}
+
+const deployConfig: DeployConfig = {
+    build: {
+        command: 'next build',
+        output: '.next'
+    },
+    env: {
+        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+        NEXT_PRIVATE_SECRET_KEY: process.env.NEXT_PRIVATE_SECRET_KEY
+    },
+    redirects: [
+        { source: '/old-url', destination: '/new-url' }
+    ],
+    headers: [
+        {
+            source: '/',
+            headers: [
+                { key: 'strict-transport-security', value: 'max-age=31536000; includeSubDomains; preload' },
+                { key: 'x-content-type-options', value: 'nosniff' },
+                { key: 'x-frame-options', value: 'DENY' },
+                { key: 'x-xss-protection', value: '1; mode=block' }
+            ]
+        }
+    ],
+    cache: [
+        {
+            urlPattern: '/api/*',
+            headers: {
+                'Cache-Control': 's-maxage=3600, stale-while-revalidate'
+            }
+        },
+        {
+            urlPattern: '/static/*',
+            headers: {
+                'Cache-Control': 'public, max-age=86400'
+            }
+        }
+    ],
+    frameworkSettings: {
+        vercel: { buildCommand: 'next build', startCommand: 'next start' },
+        netlify: { buildContext: 'production', functionsDirectory: './functions' }
+    }
+};

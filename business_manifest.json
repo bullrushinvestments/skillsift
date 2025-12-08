@@ -1,0 +1,37 @@
+{
+  "name": "SkillSift",
+  "type": "saas",
+  "description": "SkillSift offers personalized learning pathways and AI-driven mentorship for professionals in niche fields, helping them bridge knowledge gaps with tailored content and expert guidance.",
+  "generated_at": "2025-12-06T05:40:23.054488",
+  "components": [
+    "spec",
+    "build",
+    "deploy",
+    "spec_requirements",
+    "spec_architecture",
+    "build_code",
+    "build_test"
+  ],
+  "files_written": [
+    "businesses\\production_test\\saas\\skillsift\\src\\components\\component.tsx",
+    "businesses\\production_test\\saas\\skillsift\\__tests__\\component.test.tsx",
+    "businesses\\production_test\\saas\\skillsift\\vercel.json",
+    "businesses\\production_test\\saas\\skillsift\\src\\components\\requirements.tsx",
+    "businesses\\production_test\\saas\\skillsift\\__tests__\\architecture.test.tsx",
+    "businesses\\production_test\\saas\\skillsift\\vercel.json",
+    "businesses\\production_test\\saas\\skillsift\\src\\components\\test.tsx",
+    "businesses\\production_test\\saas\\skillsift\\src\\app\\layout.tsx",
+    "businesses\\production_test\\saas\\skillsift\\src\\app\\globals.css",
+    "businesses\\production_test\\saas\\skillsift\\src\\app\\page.tsx"
+  ],
+  "tasks_completed": 7,
+  "tasks_failed": 0,
+  "ap2_estimated_cost": 45.2,
+  "ap2_estimated_tokens": 19500,
+  "ap2_generation_approval": null,
+  "infrastructure_approvals": {
+    "analytics": null,
+    "database": null,
+    "storage": null
+  }
+}
